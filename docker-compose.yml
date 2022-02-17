@@ -1,0 +1,72 @@
+version: "3.8"
+services:
+  php:
+    container_name: php
+    build:
+      context: ./docker/PHP
+      dockerfile: Dockerfile
+    volumes:
+      - app:/app:rw
+    networks:
+      - net-php
+      - net-db
+    ports:
+      - "5501:80"
+    links:
+      - db
+    working_dir: /app
+    command: "symfony serve --dir=public --port=80 --force-php-discovery"
+
+  db:
+    container_name: api-db
+    image: mariadb:10.5.10
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "5502:3306"
+    networks:
+      - net-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: api
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 1234
+
+  db-test:
+    container_name: api-db-test
+    image: mariadb:10.5.10
+    volumes:
+      - db_test:/var/lib/mysql
+    ports:
+      - "5503:3306"
+    networks:
+      - net-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: api
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 1234
+
+  composer:
+    container_name: composer
+    build:
+      context: ./docker/Composer
+      dockerfile: Dockerfile
+    volumes:
+      - app:/app
+    networks:
+      - net-php
+    working_dir: /app
+
+volumes:
+  app:
+    external: true
+  db:
+    external: true
+  db_test:
+
+networks:
+  net-php:
+    name: net-php
+  net-db:
+    name: net-db

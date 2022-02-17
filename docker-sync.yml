@@ -1,0 +1,20 @@
+version: "2"
+syncs:
+  app:
+    src: '.'
+    exclude:
+    sync_strategy: 'unison'
+    sync_excludes:
+      - './var/db'
+      - './var/db_test'
+      - '.idea'
+      - '.README.md'
+      - './docker'
+      - '.docker-sync'
+      - 'docker-compose.yml'
+  db:
+    src: './var/db'
+    sync_strategy: 'unison'
+  db_test:
+    src: './var/db_test'
+    sync_strategy: 'unison'

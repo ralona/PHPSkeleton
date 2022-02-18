@@ -1,0 +1,32 @@
+<doctrine-mapping>
+    <entity name="App\FinizensContext\Domain\Model\Order\Order"
+            table="model_order">
+
+        <id name="id" type="integer" column="id"/>
+
+        <field name="type" type="string"/>
+        <field name="status" type="string"/>
+
+        <field name="portfolioId" type="integer"/>
+        <field name="allocationId" type="integer"/>
+        <field name="shares" type="integer"/>
+
+        <field name="createdAt" type="carbon">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+
+        <field name="updatedAt" type="carbon">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+
+        <field name="deletedAt" type="carbon" nullable="true">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+    </entity>
+</doctrine-mapping>

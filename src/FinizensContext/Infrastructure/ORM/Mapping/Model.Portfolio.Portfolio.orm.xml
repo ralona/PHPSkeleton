@@ -1,0 +1,36 @@
+<doctrine-mapping>
+    <entity name="App\FinizensContext\Domain\Model\Portfolio\Portfolio"
+            table="portfolio">
+
+        <id name="id" type="integer" column="id"/>
+
+        <one-to-many field="allocations"
+                     target-entity="App\FinizensContext\Domain\Model\Portfolio\Allocation"
+                     mapped-by="portfolio"
+                     orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+
+        <field name="createdAt" type="carbon">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+
+        <field name="updatedAt" type="carbon">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+
+        <field name="deletedAt" type="carbon" nullable="true">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+
+    </entity>
+</doctrine-mapping>

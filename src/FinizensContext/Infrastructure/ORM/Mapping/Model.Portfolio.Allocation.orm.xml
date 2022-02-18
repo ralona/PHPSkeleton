@@ -1,0 +1,36 @@
+<doctrine-mapping>
+    <entity name="App\FinizensContext\Domain\Model\Portfolio\Allocation"
+            table="allocation">
+
+        <id name="id" type="integer" column="id"/>
+
+        <many-to-one field="portfolio"
+                     target-entity="App\FinizensContext\Domain\Model\Portfolio\Portfolio"
+                     inversed-by="allocations"
+                     orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+
+            <join-columns>
+                <join-column on-delete="CASCADE"/>
+                <join-column on-delete="CASCADE"/>
+            </join-columns>
+        </many-to-one>
+
+        <field name="shares" type="integer"/>
+
+        <field name="createdAt" type="carbon">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+
+        <field name="updatedAt" type="carbon">
+            <options>
+                <option name="charset">ascii</option>
+            </options>
+        </field>
+    </entity>
+</doctrine-mapping>

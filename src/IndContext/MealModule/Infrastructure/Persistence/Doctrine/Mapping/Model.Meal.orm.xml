@@ -1,0 +1,12 @@
+<doctrine-mapping>
+    <entity name="App\IndContext\MealModule\Domain\Model\Meal"
+            table="meal">
+
+        <id name="id" type="meal_id" column="id" length="36"/>
+
+        <embedded name="kind"
+                  class="App\IndContext\MealModule\Domain\ValueObject\MealKind"
+        />
+
+    </entity>
+</doctrine-mapping>

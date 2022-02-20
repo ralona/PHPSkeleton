@@ -16,12 +16,18 @@ services:
 
   controllers:
     namespace: App\
-    resource: '%kernel.project_dir%/src/*Context/Infrastructure/Controller/**/'
+    resource: '%kernel.project_dir%/src/*Context/*Module/Infrastructure/Controller/**/*Controller.php'
     tags: [ 'controller.service_arguments' ]
 
-  tactician_handlers:
-    namespace: App\*Context\Application\Command\
-    resource: '%kernel.project_dir%/src/*Context/Application/Command/**/*Handler.php'
+  tactician_command_handlers:
+    namespace: App\*Context\*Module\Application\Command\
+    resource: '%kernel.project_dir%/src/*Context/*Module/Application/Application/**/*Handler.php'
+    tags:
+      - { name: tactician.handler, typehints: true }
+      -
+  tactician_query_handlers:
+    namespace: App\*Context\*Module\Application\Query\
+    resource: '%kernel.project_dir%/src/*Context/*Module/Application/Application/**/*Handler.php'
     tags:
       - { name: tactician.handler, typehints: true }
 

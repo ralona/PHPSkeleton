@@ -1,0 +1,5 @@
+<doctrine-mapping>
+    <embeddable name="App\IndContext\MealModule\Domain\ValueObject\MealKind">
+        <field name="value" type="string" length="15"/>
+    </embeddable>
+</doctrine-mapping>

@@ -1,0 +1,15 @@
+doctrine:
+  dbal:
+    types:
+      schedule_id: App\IndContext\SharedModule\Infrastructure\Persistence\Doctrine\Type\ScheduleIdType
+
+  orm:
+    entity_managers:
+      default:
+        mappings:
+          ind_shared:
+            is_bundle: true
+            type: xml
+            dir: "%kernel.project_dir%/src/IndContext/SharedModule/Infrastructure/Persistence/Doctrine/Mapping"
+            prefix: 'App\IndContext\SharedModule\Domain'
+            alias: App

@@ -1,0 +1,16 @@
+doctrine:
+  dbal:
+    types:
+      meal_id: App\IndContext\MealModule\Infrastructure\Persistence\Doctrine\Type\MealIdType
+      meal_template_id: App\IndContext\MealModule\Infrastructure\Persistence\Doctrine\Type\MealTemplateIdType
+
+  orm:
+    entity_managers:
+      default:
+        mappings:
+          ind_meal:
+            is_bundle: false
+            type: xml
+            dir: "%kernel.project_dir%/src/IndContext/MealModule/Infrastructure/Persistence/Mapping"
+            prefix: 'App\IndContext\MealModule\Domain'
+            alias: App

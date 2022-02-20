@@ -1,0 +1,16 @@
+<doctrine-mapping>
+    <entity name="App\IndContext\MealModule\Domain\Model\MealTemplate" table="meal_template">
+        <id name="id" type="meal_template_id" column="id" length="36"/>
+
+        <many-to-many field="meals" target-entity="meal">
+            <join-table name="meal_template_meal">
+                <join-columns>
+                    <join-column name="meal_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="meal_template_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+    </entity>
+</doctrine-mapping>

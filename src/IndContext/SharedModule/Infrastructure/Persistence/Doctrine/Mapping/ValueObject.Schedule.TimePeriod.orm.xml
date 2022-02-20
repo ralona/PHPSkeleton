@@ -1,0 +1,12 @@
+<doctrine-mapping>
+    <embeddable name="App\IndContext\SharedModule\Domain\ValueObject\Schedule\TimePeriod">
+        <embedded name="startTime"
+                  class="App\IndContext\SharedModule\Domain\ValueObject\Schedule\Time"
+                  column-prefix="start_"
+        />
+        <embedded name="endTime"
+                  class="App\IndContext\SharedModule\Domain\ValueObject\Schedule\Time"
+                  column-prefix="end_"
+        />
+    </embeddable>
+</doctrine-mapping>

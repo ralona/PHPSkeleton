@@ -1,0 +1,5 @@
+<doctrine-mapping>
+    <embeddable name="App\IndContext\CheatMealModule\Domain\ValueObject\WeekNumber">
+        <field name="value" type="string" length="15"/>
+    </embeddable>
+</doctrine-mapping>

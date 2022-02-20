@@ -1,0 +1,5 @@
+<doctrine-mapping>
+    <embeddable name="App\IndContext\WorkoutModule\Domain\ValueObject\WorkoutName">
+        <field name="value" type="string" length="30"/>
+    </embeddable>
+</doctrine-mapping>

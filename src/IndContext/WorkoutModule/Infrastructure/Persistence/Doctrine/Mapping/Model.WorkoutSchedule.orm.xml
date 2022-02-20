@@ -1,0 +1,18 @@
+<doctrine-mapping>
+    <entity name="App\IndContext\WorkoutModule\Domain\Model\WorkoutSchedule" table="workout_schedule">
+
+        <id name="id" type="schedule_id" column="id" length="36"/>
+
+        <embedded name="name"
+                  class="App\IndContext\WorkoutModule\Domain\ValueObject\WorkoutName"
+        />
+
+        <embedded name="timePeriod"
+                  class="App\IndContext\SharedModule\Domain\ValueObject\Schedule\TimePeriod"
+        />
+
+        <embedded name="weekday"
+                  class="App\IndContext\SharedModule\Domain\ValueObject\Schedule\Weekday"
+        />
+    </entity>
+</doctrine-mapping>

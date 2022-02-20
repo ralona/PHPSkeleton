@@ -1,0 +1,28 @@
+<doctrine-mapping>
+    <entity name="App\IndContext\CheatMealModule\Domain\Model\CheatMeal"
+            table="cheat_meal">
+
+        <id name="id" type="cheat_meal_id" column="id" length="36"/>
+
+        <many-to-one field="meal"
+                     target-entity="App\IndContext\MealModule\Domain\Model\Meal"
+                     orphan-removal="true"
+        >
+            <join-columns>
+                <join-column on-delete="CASCADE"/>
+            </join-columns>
+        </many-to-one>
+
+        <embedded name="weekday"
+                  class="App\IndContext\SharedModule\Domain\ValueObject\Schedule\Weekday"
+        />
+
+        <embedded name="weekNumber"
+                  class="App\IndContext\CheatMealModule\Domain\ValueObject\WeekNumber"
+        />
+
+        <embedded name="year"
+                  class="App\IndContext\CheatMealModule\Domain\ValueObject\Year"
+        />
+    </entity>
+</doctrine-mapping>

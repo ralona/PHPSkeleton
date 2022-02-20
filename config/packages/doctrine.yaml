@@ -1,7 +1,11 @@
 doctrine:
   dbal:
     types:
-      carbon: App\SharedContext\Infrastructure\ORM\Type\CarbonType
+      carbon: 'App\SharedContext\Infrastructure\Persistence\Doctrine\Type\CarbonType'
+      cheat_meal_id: 'App\IndContext\CheatMealModule\Infrastructure\Persistence\Doctrine\Type\CheatMealIdType'
+      meal_id: 'App\IndContext\MealModule\Infrastructure\Persistence\Doctrine\Type\MealIdType'
+      meal_template_id: 'App\IndContext\MealModule\Infrastructure\Persistence\Doctrine\Type\MealTemplateIdType'
+      schedule_id: 'App\IndContext\SharedModule\Infrastructure\Persistence\Doctrine\Type\ScheduleIdType'
     default_connection: default
     connections:
       default:
@@ -21,9 +25,30 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-          finizens:
+          App\Indcontext\CheatMealModule:
             is_bundle: false
+            alias: IndContext_CheatMealModule
             type: xml
-            dir: "%kernel.project_dir%/src/FinizensContext/Infrastructure/ORM/Mapping"
-            prefix: 'App\FinizensContext\Infrastructure'
-            alias: App
+            prefix: 'App\IndContext\CheatMealModule\Domain'
+            dir: '%kernel.project_dir%/src/IndContext/CheatMealModule/Infrastructure/Persistence/Doctrine/Mapping'
+
+          App\IndContext\MealModule:
+            is_bundle: false
+            alias: IndContext_MealModule
+            type: xml
+            prefix: 'App\IndContext\MealModule\Domain'
+            dir: '%kernel.project_dir%/src/IndContext/MealModule/Infrastructure/Persistence/Doctrine/Mapping'
+
+          App\IndContext\SharedModule:
+            is_bundle: false
+            alias: IndContext_SharedModule
+            type: xml
+            prefix: 'App\IndContext\SharedModule\Domain'
+            dir: '%kernel.project_dir%/src/IndContext/SharedModule/Infrastructure/Persistence/Doctrine/Mapping'
+
+          App\IndContext\WorkoutModule:
+            is_bundle: false
+            alias: IndContext_WorkoutModule
+            type: xml
+            prefix: 'App\IndContext\WorkoutModule\Domain'
+            dir: '%kernel.project_dir%/src/IndContext/WorkoutModule/Infrastructure/Persistence/Doctrine/Mapping'

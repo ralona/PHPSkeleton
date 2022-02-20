@@ -1,0 +1,7 @@
+<doctrine-mapping>
+    <embeddable name="App\IndContext\SharedModule\Domain\ValueObject\Schedule\Time">
+        <field name="hours" type="integer" length="2"/>
+        <field name="minutes" type="integer" length="2"/>
+        <field name="seconds" type="integer" length="2"/>
+    </embeddable>
+</doctrine-mapping>

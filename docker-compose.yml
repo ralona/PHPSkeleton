@@ -19,9 +19,9 @@ services:
 
   db:
     container_name: api-db
-    image: mariadb:10.5.10
+    image: mysql:8.0.28-oracle
     volumes:
-      - db:/var/lib/mysql
+      - ./var/db:/var/lib/mysql
     ports:
       - "5502:3306"
     networks:
@@ -34,9 +34,9 @@ services:
 
   db-test:
     container_name: api-db-test
-    image: mariadb:10.5.10
+    image: mysql:8.0.28-oracle
     volumes:
-      - db_test:/var/lib/mysql
+      - ./var/db_test:/var/lib/mysql
     ports:
       - "5503:3306"
     networks:
@@ -61,9 +61,6 @@ services:
 volumes:
   app:
     external: true
-  db:
-    external: true
-  db_test:
 
 networks:
   net-php:

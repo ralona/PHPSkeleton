@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\SharedContext\Infrastructure\ORM\Type;
+namespace App\SharedContext\Infrastructure\Persistence\Doctrine\Type;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
@@ -26,7 +26,7 @@ class CarbonType extends DateTimeType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 
@@ -39,7 +39,7 @@ class CarbonType extends DateTimeType
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?CarbonImmutable
     {
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 

@@ -6,7 +6,7 @@ namespace App\SharedContext\Domain\ValueObject;
 
 /**
  * @method validate(...$value)
- * @method static isValid(...$value)
+ * @method static bool isValid(...$value)
  */
 interface ValueObjectInterface
 {

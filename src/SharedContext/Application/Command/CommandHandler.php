@@ -6,5 +6,5 @@ namespace App\SharedContext\Application\Command;
 
 abstract class CommandHandler implements CommandHandlerInterface
 {
-    #abstract public function handle(Command $command): void;
+    //abstract public function handle(Application $command): void;
 }

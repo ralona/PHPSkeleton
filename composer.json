@@ -14,9 +14,11 @@
     "doctrine/doctrine-bundle": "^2.4",
     "doctrine/doctrine-migrations-bundle": "^3.0",
     "doctrine/orm": "*",
+    "lambdish/phunctional": "^2.1",
     "league/tactician-bundle": "^1.3",
     "league/tactician-doctrine": "^1.1",
     "nesbot/carbon": "^2.48",
+    "ramsey/uuid": "^4.2",
     "symfony/apache-pack": "^1.0",
     "symfony/console": "*",
     "symfony/dotenv": "*",
@@ -24,7 +26,8 @@
     "symfony/framework-bundle": "*",
     "symfony/runtime": "*",
     "symfony/validator": "5.3.*",
-    "symfony/yaml": "*"
+    "symfony/yaml": "*",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",

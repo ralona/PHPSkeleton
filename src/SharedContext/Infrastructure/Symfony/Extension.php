@@ -10,17 +10,24 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class Extension extends SymfonyExtension
 {
-    public function load(array $configs, ContainerBuilder $container): void
+    final public function load(array $configs, ContainerBuilder $container): void
     {
-        $this->loadBundle($container);
+        foreach ($this->configPaths() as $configPath) {
+            $loader = new YamlFileLoader($container, new FileLocator($configPath));
+            $this->loadBundle($loader, $configPath);
+        }
+    }
+
+    public function configPaths(): array
+    {
+        return [
+            __DIR__ . '/config'
+        ];
     }
 
     /** @throws Exception */
-    public function loadBundle(ContainerBuilder $container): void
+    final public function loadBundle(YamlFileLoader $loader, string $configPath): void
     {
-        $configPath = __DIR__ . '/../Symfony/config';
-        $loader = new YamlFileLoader($container, new FileLocator($configPath));
-
         $ymlFilenames = array_filter(scandir($configPath), static function ($filename) {
             return preg_match('/\.(?:yml|yaml)$/', $filename);
         });

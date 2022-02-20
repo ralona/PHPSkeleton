@@ -7,7 +7,8 @@ namespace App\SharedContext\Domain\ValueObject\Generic;
 use App\SharedContext\Domain\ValueObject\SimpleValueObject;
 use ReflectionClass;
 
-abstract class StringValueObject extends SimpleValueObject
+/** @property string $value */
+abstract class EnumValueObject extends SimpleValueObject
 {
     public static function isValid($value): bool
     {

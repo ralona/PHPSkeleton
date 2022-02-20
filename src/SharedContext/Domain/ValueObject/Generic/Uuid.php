@@ -16,7 +16,7 @@ class Uuid extends SimpleValueObject
         return InvalidUuidException::class;
     }
 
-    public function isValid(string $value): bool
+    public static function isValid(string $value): bool
     {
         return RamseyUuid::isValid($value);
     }

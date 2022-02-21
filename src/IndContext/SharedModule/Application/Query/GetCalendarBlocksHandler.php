@@ -36,21 +36,24 @@ class GetCalendarBlocksHandler implements QueryHandlerInterface
 
         $calendar = [];
         foreach ($period as $date) {
-            $cheatMeal = current(array_filter(
-                $cheatMeals,
-                static fn(CheatMeal $cheatMeal) => $date->dayOfWeek === $cheatMeal->weekday()->value()
-            ));
+            $cheatMeal = array_filter(
+                    $cheatMeals,
+                    static fn(CheatMeal $cheatMeal) => $date->dayOfWeek === $cheatMeal->weekday()->value() &&
+                        $date->weekOfYear === $cheatMeal->weekNumber()->value() &&
+                        $date->isSameYear((string)$cheatMeal->year()->value())
+                )[0] ?? null;
 
             $calculatedWorkoutSchedules = ($this->calculateWorkoutSchedulesService)($date, ...$workoutSchedules);
 
-            $calculatedmealSchedules = ($this->calulateMealSchedulesService)(
+            $calculatedMealSchedules = ($this->calulateMealSchedulesService)(
                 $date,
                 $mealSchedules,
                 $cheatMeal,
                 $calculatedWorkoutSchedules,
             );
 
-            $calendar[] = new DayBlockView($date, ...($calculatedmealSchedules + $calculatedWorkoutSchedules));
+            $calendar[] = new DayBlockView($date, ...
+                array_merge($calculatedMealSchedules, $calculatedWorkoutSchedules));
         }
 
         return new QueryResponse($calendar);

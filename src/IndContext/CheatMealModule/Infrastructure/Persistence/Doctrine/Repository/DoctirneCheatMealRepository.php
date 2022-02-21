@@ -30,8 +30,8 @@ class DoctirneCheatMealRepository extends BaseRepository implements CheatMealRep
     public function findByWeekAndYear(WeekNumber $weekNumber, Year $year): ?CheatMeal
     {
         $queryBuilder = $this->createQueryBuilder()
-            ->andWhere($this->alias() . '.weekNumber = :weekNumber')
-            ->andWhere($this->alias() . '.year = :year')
+            ->andWhere($this->alias() . '.weekNumber.value = :weekNumber')
+            ->andWhere($this->alias() . '.year.value = :year')
             ->setParameter('weekNumber', $weekNumber->value())
             ->setParameter('year', $year->value());
 

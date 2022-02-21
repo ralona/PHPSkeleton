@@ -10,7 +10,6 @@ use App\IndContext\SharedModule\Domain\ValueObject\Schedule\TimePeriod;
 class MealScheduleDTO
 {
     private const MEAL_ID = 'mealId';
-    private const SCHEDULE = 'schedule';
     private const START_TIME = 'startTime';
     private const END_TIME = 'endTime';
 
@@ -24,9 +23,9 @@ class MealScheduleDTO
     {
         return new self(
             new MealId($payload[self::MEAL_ID]),
-            new TimePeriod(
-                $payload[self::SCHEDULE][self::START_TIME],
-                $payload[self::SCHEDULE][self::END_TIME],
+            TimePeriod::deserialize(
+                $payload[self::START_TIME],
+                $payload[self::END_TIME],
             ),
         );
     }

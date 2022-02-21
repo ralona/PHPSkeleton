@@ -14,22 +14,25 @@ services:
       - '%kernel.project_dir%/src/SharedContext/Infrastructure/Symfony/Kernel.php'
       - '%kernel.project_dir%/src/Tests/'
 
-  controllers:
-    namespace: App\
-    resource: '%kernel.project_dir%/src/*Context/*Module/Infrastructure/Controller/**/*Controller.php'
-    tags: [ 'controller.service_arguments' ]
 
   tactician_command_handlers:
-    namespace: App\*Context\*Module\Application\Command\
-    resource: '%kernel.project_dir%/src/*Context/*Module/Application/Application/**/*Handler.php'
-    tags:
-      - { name: tactician.handler, typehints: true }
-      -
-  tactician_query_handlers:
-    namespace: App\*Context\*Module\Application\Query\
-    resource: '%kernel.project_dir%/src/*Context/*Module/Application/Application/**/*Handler.php'
+    namespace: App\
+    resource: '%kernel.project_dir%/src/*Context/*Module/Application/Command/**/*Handler.php'
     tags:
       - { name: tactician.handler, typehints: true }
 
-  # add more service definitions when explicit configuration is needed
-  # please note that last definitions always *replace* previous ones
+  tactician_query_handlers:
+    namespace: App\
+    resource: '%kernel.project_dir%/src/*Context/*Module/Application/Query/**/*Handler.php'
+    tags:
+      - { name: tactician.handler, typehints: true }
+
+  App\SharedContext\Infrastructure\Bus\TacticianCommandBus:
+    public: false
+    arguments:
+      - '@tactician.commandbus'
+
+  controllers:
+    namespace: App\
+    resource: "../src/**/Infrastructure/Controller/"
+    tags: [ 'controller.service_arguments' ]

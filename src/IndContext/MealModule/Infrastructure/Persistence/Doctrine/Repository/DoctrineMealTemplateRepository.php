@@ -29,7 +29,7 @@ class DoctrineMealTemplateRepository extends BaseRepository implements MealTempl
 
     public function find(MealTemplateId $mealTemplateId): ?MealTemplate
     {
-        return $this->repository->find($mealTemplateId->value());
+        return $this->repository->find($mealTemplateId);
     }
 
     public function findOrFail(MealTemplateId $mealTemplateId): MealTemplate

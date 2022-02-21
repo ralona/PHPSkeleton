@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MealScheduleController extends BaseController
 {
-    #[Route("/meal-schedule", methods: ["PUT"])]
+    #[Route("/meal-schedules", methods: ["PUT"])]
     public function createMealSchedule(): Response
     {
         $requestContent = $this->request->content();

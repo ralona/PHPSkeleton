@@ -9,23 +9,26 @@ use App\SharedContext\Domain\ValueObject\ValueObject;
 
 class Time extends ValueObject
 {
-    private string $hours;
-    private string $minutes;
-    private string $seconds;
+    private int $hours;
+    private int $minutes;
+    private int $seconds;
 
     public function __construct(string $value)
-    {
-        $this->validate($value);
-        [$this->hours, $this->minutes, $this->seconds] = explode(':', $value);
-    }
-
-    public static function create(string $value): self
     {
         $data = explode(':', $value);
         for ($i = count($data); $i < 3; $i++) {
             $value .= ':00';
         }
 
+        $this->validate($value);
+        [$this->hours, $this->minutes, $this->seconds] = array_map(
+            'intval',
+            explode(':', $value)
+        );
+    }
+
+    public static function create(string $value): self
+    {
         return new self($value);
     }
 
@@ -60,40 +63,61 @@ class Time extends ValueObject
 
     public function isLessThan(Time $time): bool
     {
-        if ($time->hours > $this->hours) {
-            return false;
+        if ($this->hours < $time->hours) {
+            return true;
         }
 
-        if ($time->minutes > $this->minutes) {
-            return false;
-        }
-
-        if ($time->seconds > $this->seconds) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function isMoreThan(Time $time): bool
-    {
         if ($this->hours > $time->hours) {
             return false;
+        }
+
+        if ($this->minutes < $time->minutes) {
+            return true;
         }
 
         if ($this->minutes > $time->minutes) {
             return false;
         }
 
-        if ($this->seconds > $time->seconds) {
+        if ($this->seconds < $time->seconds) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isMoreThan(Time $time): bool
+    {
+        if ($this->hours > $time->hours) {
+            return true;
+        }
+
+        if ($this->hours < $time->hours) {
             return false;
         }
 
-        return true;
+        if ($this->minutes > $time->minutes) {
+            return true;
+        }
+
+
+        if ($this->minutes < $time->minutes) {
+            return false;
+        }
+
+        if ($this->seconds > $time->seconds) {
+            return true;
+        }
+
+        return false;
     }
 
     public function value(): string
     {
-        return $this->hours . '.' . $this->minutes . '.' . $this->seconds;
+        return str_pad((string)$this->hours, 2, '0', STR_PAD_LEFT)
+            . ':' .
+            str_pad((string)$this->minutes, 2, '0', STR_PAD_LEFT)
+            . ':' .
+            str_pad((string)$this->seconds, 2, '0', STR_PAD_LEFT);
     }
 }

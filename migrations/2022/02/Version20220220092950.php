@@ -35,10 +35,8 @@ final class Version20220220092950 extends AbstractMigration
 
         $mealTemplateTable = $schema->getTable('meal_template');
 
-        $mealTemplateQuery = "INSERT INTO {$mealTemplateTable->getName()} (`id`) VALUES " . implode(', ',
-                $mealTemplateValues);
-
-        echo $mealTemplateQuery . "\n";
+        $mealTemplateQuery = "INSERT INTO {$mealTemplateTable->getName()} (`id`) VALUES " .
+            implode(', ', $mealTemplateValues);
 
         $this->addSql($mealTemplateQuery, $mealTemplateParameters);
     }

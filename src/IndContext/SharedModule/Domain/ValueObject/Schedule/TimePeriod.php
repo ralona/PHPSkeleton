@@ -13,10 +13,10 @@ class TimePeriod extends ValueObject
         private Time $startTime,
         private Time $endTime,
     ) {
-        $this->validate($startTime, $endTime);
+        $this->validate([$startTime, $endTime]);
     }
 
-    public static function serialize(string $startTime, string $endTime): self
+    public static function deserialize(string $startTime, string $endTime): self
     {
         return new self(new Time($startTime), new Time($endTime));
     }

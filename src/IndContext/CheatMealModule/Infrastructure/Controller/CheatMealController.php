@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CheatMealController extends BaseController
 {
-    #[Route("/cheat-meal", methods: ["POST"])]
+    #[Route("/cheat-meals", methods: ["PUT"])]
     public function createCheatMeal(): Response
     {
         $requestContent = $this->request->content();

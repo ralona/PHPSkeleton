@@ -2,7 +2,7 @@
     <entity name="App\IndContext\MealModule\Domain\Model\MealTemplate" table="meal_template">
         <id name="id" type="meal_template_id" column="id" length="36"/>
 
-        <many-to-many field="meals" target-entity="meal">
+        <many-to-many field="meals" target-entity="App\IndContext\MealModule\Domain\Model\Meal">
             <join-table name="meal_template_meal">
                 <join-columns>
                     <join-column name="meal_template_id" referenced-column-name="id"/>

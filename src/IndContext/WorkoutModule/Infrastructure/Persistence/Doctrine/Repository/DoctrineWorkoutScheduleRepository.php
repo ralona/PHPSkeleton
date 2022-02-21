@@ -31,7 +31,7 @@ class DoctrineWorkoutScheduleRepository extends BaseRepository implements Workou
 
     public function find(ScheduleId $workoutId): ?WorkoutSchedule
     {
-        return $this->repository->find($workoutId->value());
+        return $this->repository->find($workoutId);
     }
 
     public function findOrFail(ScheduleId $workoutId): WorkoutSchedule

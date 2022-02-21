@@ -19,14 +19,14 @@ class DoctrineMealRepository extends BaseRepository implements MealRepository
 
     public function find(MealId $mealId): ?Meal
     {
-        return $this->repository->find($mealId->value());
+        return $this->repository->find($mealId);
     }
 
     public function findOrFail(MealId $mealId): Meal
     {
-        $meal = $this->repository->find($mealId->value());
+        $meal = $this->repository->find($mealId);
         if (null === $meal) {
-            throw new MealNotFoundException($mealId->value);
+            throw new MealNotFoundException($mealId->value());
         }
 
         return $meal;
@@ -44,13 +44,9 @@ class DoctrineMealRepository extends BaseRepository implements MealRepository
 
     public function findByIds(MealId ...$mealIds): array
     {
-        $ids = array_map(static function (MealId $mealId) {
-            return $mealId->value();
-        }, $mealIds);
-
         $queryBuilder = $this->createQueryBuilder()
             ->andWhere($this->alias() . '.id IN (:mealIds)')
-            ->setParameter('mealIds', $ids);
+            ->setParameter('mealIds', $mealIds);
 
         return $queryBuilder->getQuery()->getResult();
     }

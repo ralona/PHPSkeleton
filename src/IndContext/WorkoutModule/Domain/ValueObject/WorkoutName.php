@@ -21,6 +21,6 @@ class WorkoutName extends SimpleValueObject
 
     public static function isValid(string $value): bool
     {
-        return 256 <= strlen($value);
+        return 256 >= strlen($value);
     }
 }

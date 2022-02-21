@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MealTemplateController extends BaseController
 {
-    #[Route("/portfolio/{portfolioId}", methods: ["GET"])]
+    #[Route("/meal-templates", methods: ["GET"])]
     public function getMealTemplates(): Response
     {
         $query = new GetMealTemplatesQuery();

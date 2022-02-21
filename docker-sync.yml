@@ -12,9 +12,3 @@ syncs:
       - './docker'
       - '.docker-sync'
       - 'docker-compose.yml'
-  db:
-    src: './var/db'
-    sync_strategy: 'unison'
-  db_test:
-    src: './var/db_test'
-    sync_strategy: 'unison'

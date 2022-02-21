@@ -32,21 +32,6 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: 1234
 
-  db-test:
-    container_name: api-db-test
-    image: mysql:8.0.28-oracle
-    volumes:
-      - ./var/db_test:/var/lib/mysql
-    ports:
-      - "5503:3306"
-    networks:
-      - net-db
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: api
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: 1234
-
   composer:
     container_name: composer
     build:

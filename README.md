@@ -1,7 +1,8 @@
-# PHP Skeleton with Symfony
+# IND Challenge
 
 ## Instructions
 
 - docker-sync start
-- docker-compose up -d
-- docker-compose run composer install
+- make build
+
+The API is running in http://localhost:5501

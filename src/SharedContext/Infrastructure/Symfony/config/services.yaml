@@ -1,5 +1,2 @@
 services:
-  App\SharedContext\Infrastructure\Bus\TacticianCommandBus:
-    public: false
-    arguments:
-      - '@tactician.commandbus'
+

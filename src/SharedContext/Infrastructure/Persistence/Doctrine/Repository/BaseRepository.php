@@ -4,27 +4,30 @@ declare(strict_types=1);
 
 namespace App\SharedContext\Infrastructure\Persistence\Doctrine\Repository;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use function Lambdish\Phunctional\last;
 
 abstract class BaseRepository
 {
     protected ServiceEntityRepository $repository;
-    private ClassMetadata $classMetadata;
+    private string $alias;
 
     public function __construct(
-        protected EntityManager $_em
+        protected EntityManagerInterface $_em
     ) {
-        $this->classMetadata = new ClassMetadata($this->entityClassName());
-        $this->repository = new ServiceEntityRepository($_em, $this->classMetadata);
+        $this->alias = last(explode('\\', static::entityClassName()));
+        $this->repository = new ServiceEntityRepository(
+            $_em,
+            $this->_em->getClassMetadata(static::entityClassName())
+        );
     }
 
     abstract protected function entityClassName(): string;
 
     protected function alias(): string
     {
-        return $this->classMetadata->name;
+        return $this->alias;
     }
 
     protected function createQueryBuilder(): QueryBuilder

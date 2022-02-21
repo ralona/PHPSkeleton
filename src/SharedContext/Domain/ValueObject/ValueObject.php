@@ -14,7 +14,8 @@ abstract class ValueObject implements ValueObjectInterface
 
     public function validate($value): void
     {
-        if (!static::isValid($value)) {
+        $value = is_array($value) ? $value : [$value];
+        if (!static::isValid(...$value)) {
             throw $this->resolveException($value);
         }
     }
@@ -22,6 +23,7 @@ abstract class ValueObject implements ValueObjectInterface
     private function resolveException($invalidValue): ValueObjectException
     {
         $exceptionClass = new ReflectionClass($this->invalidExceptionClass());
+        $invalidValue = is_array($invalidValue) ? json_encode($invalidValue) : $invalidValue;
         $exception = $exceptionClass->newInstance($invalidValue);
 
         if (!$exception instanceof ValueObjectException) {

@@ -16,7 +16,7 @@ class Kernel extends BaseKernel
         $container->import($this->getProjectDir() . '/config/{packages}/*.yaml');
         $container->import($this->getProjectDir() . '/config/{packages}/' . $this->environment . '/*.yaml');
 
-        if (is_file(dirname(__DIR__) . '/config/services.yaml')) {
+        if (is_file($this->getProjectDir() . '/config/services.yaml')) {
             $container->import($this->getProjectDir() . '/config/services.yaml');
             $container->import($this->getProjectDir() . '/config/{services}_' . $this->environment . '.yaml');
         } else {
@@ -29,7 +29,7 @@ class Kernel extends BaseKernel
         $routes->import($this->getProjectDir() . '/config/{routes}/' . $this->environment . '/*.yaml');
         $routes->import($this->getProjectDir() . '/config/{routes}/*.yaml');
 
-        if (is_file(dirname(__DIR__) . '/config/routes.yaml')) {
+        if (is_file($this->getProjectDir() . '/config/routes.yaml')) {
             $routes->import($this->getProjectDir() . '/config/routes.yaml');
         } else {
             $routes->import($this->getProjectDir() . '/config/{routes}.php');

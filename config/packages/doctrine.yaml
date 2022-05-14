@@ -1,7 +1,7 @@
 doctrine:
   dbal:
     types:
-      carbon: App\SharedContext\Infrastructure\ORM\Type\CarbonType
+      carbon: App\SharedContext\Infrastructure\Persistence\Doctrine\Type\CarbonType
     default_connection: default
     connections:
       default:
@@ -21,9 +21,9 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-          finizens:
+          shared:
             is_bundle: false
             type: xml
-            dir: "%kernel.project_dir%/src/FinizensContext/Infrastructure/ORM/Mapping"
-            prefix: 'App\FinizensContext\Infrastructure'
+            dir: "%kernel.project_dir%/src/SharedContext/Infrastructure/Persistence/Doctrine/Mapping"
+            prefix: 'App\SharedContext\Infrastructure'
             alias: App

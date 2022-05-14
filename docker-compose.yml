@@ -6,7 +6,7 @@ services:
       context: ./docker/PHP
       dockerfile: Dockerfile
     volumes:
-      - app:/app:rw
+      - ./:/app:rw
     networks:
       - net-php
       - net-db
@@ -53,14 +53,10 @@ services:
       context: ./docker/Composer
       dockerfile: Dockerfile
     volumes:
-      - app:/app
+      - ./:/app
     networks:
       - net-php
     working_dir: /app
-
-volumes:
-  app:
-    external: true
 
 networks:
   net-php:

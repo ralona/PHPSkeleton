@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\SharedContext\Infrastructure\Bus;
 
+use App\SharedContext\Application\Bus\CommandBus;
 use App\SharedContext\Application\Command\Command;
 use League\Tactician\CommandBus as TacticianBus;
 

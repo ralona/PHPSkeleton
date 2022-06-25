@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\SharedContext\Infrastructure\Controller;
 
+use App\SharedContext\Application\Bus\CommandBus;
+use App\SharedContext\Application\Bus\QueryBus;
 use App\SharedContext\Domain\Validator\Validator;
-use App\SharedContext\Infrastructure\Bus\CommandBus;
-use App\SharedContext\Infrastructure\Bus\QueryBus;
 use App\SharedContext\Infrastructure\Request\Request;
 use App\SharedContext\Infrastructure\Response\ResponseFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

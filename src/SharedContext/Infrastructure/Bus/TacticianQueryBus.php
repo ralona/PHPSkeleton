@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\SharedContext\Infrastructure\Bus;
 
+use App\SharedContext\Application\Bus\QueryBus;
 use App\SharedContext\Application\Query\Query;
 use App\SharedContext\Application\Query\QueryResponse;
 use League\Tactician\CommandBus as TacticianBus;

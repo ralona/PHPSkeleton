@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\SharedContext\Infrastructure\Bus;
+namespace App\SharedContext\Application\Bus;
 
 use App\SharedContext\Application\Command\Command;
 
